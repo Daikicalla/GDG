@@ -453,13 +453,6 @@ function RayfieldLibrary:Notify(Title,Content,Image)
 				TweenService:Create(Notification, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {BackgroundTransparency = 0}):Play()
 			end
 		end
-
-		if Rayfield.Name == "Rayfield" then
-			neon:BindFrame(Notification.BlurModule, {
-				Transparency = 0.98;
-				BrickColor = BrickColor.new("Institutional white");
-			})
-		end
 		wait(NotificationDuration - 0.5)
 
 
@@ -483,7 +476,6 @@ function RayfieldLibrary:Notify(Title,Content,Image)
 		end
 		wait(1.35)
 		if not getgenv().SecureMode then
-			neon:UnbindFrame(Notification.BlurModule)
 			blurlight:Destroy()
 		end
 		Notification:Destroy()
