@@ -1915,4 +1915,4 @@ function RayfieldLibrary:LoadConfiguration()
 	end
 end
 
-return RayfieldLibraryprint("Hello world!")
+return RayfieldLibrary
