@@ -3390,7 +3390,13 @@ function library:Init(key)
 
                 releaseconnection = UserInputService.InputEnded:Connect(function(Mouse_2)
                     if Mouse_2.UserInputType == Enum.UserInputType.MouseButton1 then
-                        ValueNum = math.floor((((tonumber(values.max) - tonumber(values.min)) / sliderBackground.AbsoluteSize.X) * sliderIndicator.AbsoluteSize.X) + tonumber(values.min))
+                        local rawValue = (((tonumber(values.max) - tonumber(values.min)) / sliderBackground.AbsoluteSize.X) * sliderIndicator.AbsoluteSize.X) + tonumber(values.min)
+                        ValueNum = math.floor(rawValue) or 0.00
+                        if allowDecimals then
+                            ValueNum = math.floor(rawValue * 100 + 0.5) / 100
+                            print("Decimal allowed!")
+                        end    
+
                         
                         slideText = compare and ValueNum .. compareSign .. tostring(values.max - 1) .. suffix or ValueNum .. suffix
                         sliderValue.Text = slideText
