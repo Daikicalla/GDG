@@ -3183,7 +3183,7 @@ function library:Init(key)
             return SelectorFunctions
         end
         --
-        function Components:NewSlider(text, suffix, compare, compareSign, values, callback)
+        function Components:NewSlider(text, suffix, compare, compareSign, values, callback, allowDecimals)
             text = text or "slider"
             suffix = suffix or ""
             compare = compare or false
@@ -3353,6 +3353,9 @@ function library:Init(key)
                 TweenService:Create(sliderIndicator, TweenTable["slider_drag"], {Size = UDim2.new(0, math.clamp(Mouse.X - sliderIndicator.AbsolutePosition.X, 0, sliderBackground.AbsoluteSize.X), 0, 12)}):Play()
 
                 ValueNum = math.floor((((tonumber(values.max) - tonumber(values.min)) / sliderBackground.AbsoluteSize.X) * sliderIndicator.AbsoluteSize.X) + tonumber(values.min)) or 0.00
+                if allowDecimals then
+                    ValueNum = math.floor(rawValue * 100 + 0.5) / 100
+                end
 
                 local slideText = compare and ValueNum .. compareSign .. tostring(values.max - 1) .. suffix or ValueNum .. suffix
 
